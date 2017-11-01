@@ -144,7 +144,7 @@ public class SavingsProductDataValidator {
         baseDataValidator.reset().parameter(currencyCodeParamName).value(currencyCode).notBlank();
 
         final Integer digitsAfterDecimal = this.fromApiJsonHelper.extractIntegerSansLocaleNamed(digitsAfterDecimalParamName, element);
-        baseDataValidator.reset().parameter(digitsAfterDecimalParamName).value(digitsAfterDecimal).notNull().inMinMaxRange(0, 6);
+        baseDataValidator.reset().parameter(digitsAfterDecimalParamName).value(digitsAfterDecimal).notNull().inMinMaxRange(0, 18);
 
         if (this.fromApiJsonHelper.parameterExists(inMultiplesOfParamName, element)) {
             final Integer inMultiplesOf = this.fromApiJsonHelper.extractIntegerNamed(inMultiplesOfParamName, element, Locale.getDefault());
