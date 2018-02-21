@@ -220,7 +220,7 @@ public class DepositProductDataValidator {
         baseDataValidator.reset().parameter(currencyCodeParamName).value(currencyCode).notBlank();
 
         final Integer digitsAfterDecimal = fromApiJsonHelper.extractIntegerSansLocaleNamed(digitsAfterDecimalParamName, element);
-        baseDataValidator.reset().parameter(digitsAfterDecimalParamName).value(digitsAfterDecimal).notNull().inMinMaxRange(0, 6);
+        baseDataValidator.reset().parameter(digitsAfterDecimalParamName).value(digitsAfterDecimal).notNull().inMinMaxRange(0, 18);
 
         if (fromApiJsonHelper.parameterExists(inMultiplesOfParamName, element)) {
             final Integer inMultiplesOf = fromApiJsonHelper.extractIntegerNamed(inMultiplesOfParamName, element, Locale.getDefault());

@@ -400,7 +400,7 @@ public class SavingsProductDataValidator {
 
         if (this.fromApiJsonHelper.parameterExists(digitsAfterDecimalParamName, element)) {
             final Integer digitsAfterDecimal = this.fromApiJsonHelper.extractIntegerSansLocaleNamed(digitsAfterDecimalParamName, element);
-            baseDataValidator.reset().parameter(digitsAfterDecimalParamName).value(digitsAfterDecimal).notNull().inMinMaxRange(0, 6);
+            baseDataValidator.reset().parameter(digitsAfterDecimalParamName).value(digitsAfterDecimal).notNull().inMinMaxRange(0, 18);
         }
 
         if (this.fromApiJsonHelper.parameterExists(inMultiplesOfParamName, element)) {
