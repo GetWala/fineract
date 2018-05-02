@@ -1020,6 +1020,7 @@ public class SavingsAccount extends AbstractPersistableCustom<Long> {
         		|| this.sub_status.equals(SavingsAccountSubStatusEnum.DORMANT.getValue())){
         	this.sub_status = SavingsAccountSubStatusEnum.NONE.getValue();
         }
+        this.summary.updateSummary(this.currency, this.savingsAccountTransactionSummaryWrapper, this.transactions);
         return transaction;
     }
 
