@@ -54,7 +54,17 @@ public class SavingsAccountRepositoryWrapper {
     public SavingsAccount findOneWithNotFoundDetection(final Long savingsId) {
         final SavingsAccount account = this.repository.findOne(savingsId);
         if (account == null) { throw new SavingsAccountNotFoundException(savingsId); }
-        account.loadLazyCollections();
+        if(!"0xa733c93d0fa79b32fd6f926a6f928e471f2a5630".equals(account.externalId) 
+            && !"0xfea63fda5caef8a4fbbe4e3242f166cb5fdcb8d0".equals(account.externalId)
+            && !"0xa95c6e8930b4eee03f4538665c8f1a9e5ebd9843".equals(account.externalId) //marketplace south africa
+            && !"0x91baceea8ae05a2a2cb9c5fde20d5226bf0c3638".equals(account.externalId) //marketplace uganda
+            && !"0x50015652274615a12610cc48d32a26a6416514cc".equals(account.externalId)){ //marketplace zimbabwe
+            System.out.println("NOT REWARDS OR MARKETPLACE ACCOUNT ACCOUNT! UPDATING SUMMARY AND LOADING LAZY COLLECTIONS");
+            account.setUpdateSummary(true);
+            account.loadLazyCollections();
+        }else{
+            System.out.println("REWARDS OR MARKETPLACE ACCOUNT ACCOUNT! SKIPPING UPDATE SUMMARY AND LAZY LOADING");
+        }
         return account;
     }
 

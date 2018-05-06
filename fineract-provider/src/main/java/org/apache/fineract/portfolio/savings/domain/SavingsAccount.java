@@ -49,6 +49,7 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Transient;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
@@ -329,6 +330,16 @@ public class SavingsAccount extends AbstractPersistableCustom<Long> {
     private BigDecimal savingsOnHoldAmount;
     protected SavingsAccount() {
         //
+    }
+
+    @Transient
+    private boolean updateSummary = false;
+    public boolean isUpdateSummary(){
+        return this.updateSummary;
+    }
+
+    public void setUpdateSummary(boolean updateSummary){
+        this.updateSummary = updateSummary;
     }
 
     public static SavingsAccount createNewApplicationForSubmittal(final Client client, final Group group, final SavingsProduct product,
@@ -1020,7 +1031,9 @@ public class SavingsAccount extends AbstractPersistableCustom<Long> {
         		|| this.sub_status.equals(SavingsAccountSubStatusEnum.DORMANT.getValue())){
         	this.sub_status = SavingsAccountSubStatusEnum.NONE.getValue();
         }
-        this.summary.updateSummary(this.currency, this.savingsAccountTransactionSummaryWrapper, this.transactions);
+        if(this.isUpdateSummary()){
+            this.summary.updateSummary(this.currency, this.savingsAccountTransactionSummaryWrapper, this.transactions);
+        }
         return transaction;
     }
 
