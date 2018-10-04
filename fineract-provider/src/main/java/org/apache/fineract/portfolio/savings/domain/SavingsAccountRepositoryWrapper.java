@@ -56,6 +56,9 @@ public class SavingsAccountRepositoryWrapper {
         if (account == null) { throw new SavingsAccountNotFoundException(savingsId); }
         if(!"0xa733c93d0fa79b32fd6f926a6f928e471f2a5630".equals(account.externalId) 
             && !"0xfea63fda5caef8a4fbbe4e3242f166cb5fdcb8d0".equals(account.externalId)
+            && !"0x274405d1fef12ae8333a75f8da3d233ad8fcd97f".equals(account.externalId) //rewards (2)
+            && !"0x2df62982a3295ab8af0457b4d16cb954df4a1456".equals(account.externalId) //rewards (3)
+            && !"0x065f0c2858682ed87420aaaabbfb978900e5e911".equals(account.externalId) //marketplace uganda (2)
             && !"0xa95c6e8930b4eee03f4538665c8f1a9e5ebd9843".equals(account.externalId) //marketplace south africa
             && !"0x91baceea8ae05a2a2cb9c5fde20d5226bf0c3638".equals(account.externalId) //marketplace uganda
             && !"0x50015652274615a12610cc48d32a26a6416514cc".equals(account.externalId)){ //marketplace zimbabwe
